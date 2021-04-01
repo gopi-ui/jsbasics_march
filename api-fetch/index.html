@@ -8,119 +8,53 @@
   </head>
   <body>
     <h1>api fetch using jasonplaceholder</h1>
-    <button id ="" onclick="request()">GET DATA</button>
+    <button id="" onclick="request()">GET DATA</button>
+    <div id="count"></div>
+    <div id="top_post"></div>
     <script>
-        
-        function request(){
-            // var results= 
-            fetch("https://jsonplaceholder.typicode.com/posts")
-                        .then(function(response){  return response.json()
-            })
-              .then((response) => {
+      function request() {
+        var results = fetch("http://jsonplaceholder.typicode.com/posts")
+          .then(function (results) {
+            return results.json();
+          })
+          .then((results) => {
+            let resonseCount = document.getElementById("count");
 
-                let count = document.getElementById("count");
-                count.innerHTML = `The total number of Arrayofobjects: ${response.length}`;
+            resonseCount.innerHTML = `The total number of Arrayofobjects: ${results.length}`;
 
-                let top_five =  [];
-                let printOnlyFive = response.slice(0,5);
-                console.log(printOnlyFive);
+            let top_five = [];
+            let printOnlyFive = results.slice(0, 5);
+            console.log(printOnlyFive);
 
-                printOnlyFive.map(i => top_five.push({Title: i['title'],Body: i['body']}));
+            printOnlyFive.map((i) =>
+              top_five.push({ Title: i["title"], Body: i["body"] })
+            );
 
-                let topPostFive = document.getElementById("top-post");
-                let tryDiv = document.createElement("div");
-                tryDiv.className = 'tryDiv'
+            let topPostFive = document.getElementById("top_post");
+            let tryDiv = document.createElement("div");
+            tryDiv.className = "tryDiv";
 
-                for(i=0;i<=top_five.length;i++){
-                  let secdiv = document.createElement('p');
-                  secdiv.className = 'secdiv'
+            for (i = 0; i <= top_five.length; i++) {
+              let secdiv = document.createElement("div");
+              secdiv.className = "secdiv";
 
-                  for(key in top_five[i]){
-                    let altdiv = document.createElement("p");
+              for (key in top_five[i]) {
+                let altdiv = document.createElement("p");
 
-                    altdiv.className='altdiv'
-                    altdiv.innerHTML = key + " :" + top_five[i][key];
+                altdiv.className = "altdiv";
+                altdiv.innerHTML = key + " :" + top_five[i][key];
 
-                  secdiv.appendChild(altdiv);
-                  }
-
-                  tryDiv.appendChild(secdiv);
-                }
-                
-                topPostFive.appendChild(tryDiv);
+                secdiv.appendChild(altdiv);
               }
 
-                // let result = document.getElementById('result')
-                // var item = ''
-                // console.log("the count of object",response.length);
-                // console.log(response);
+              tryDiv.appendChild(secdiv);
+            }
 
-                //let printOnlyFive= response.slice(0,5);
-                //console.log(printOnlyFive);
-
-                // let unique = response.filter((v, i, a) => a.indexOf(v) === i);
-                // console.log(unique);
-
-                // let count =document.getElementById("count");
-                // count.innerHTML=`The total number of Arrayofobjects: ${response.length}`;
-                // response.forEach(element => {
-
-                // result.append='user Id:' + element.userId;
-                //     console.log(item)
-                // });
-        //     })
-        // }
-
-        // let uniqueArray = (response)=>{
-        //     let uniquarray=[];
-        //     for(i=0;i<=response.length;i++)
-        //     for(j=0;j<=uniquarray.length;i++)
-        //     break;
-
-        //     if(uniquarray[j].length === response[i].length){
-        //         console.log(uniquarray)
-        //     }
-
-        // }
-    </script>
-
-    // <!-- <script src="./index.js"></script> -->
-    // <!-- <button type="submit"></button> -->
-    // <!-- <script>
-    //   fetch(url)
-    //     .then(function () {})
-    //     .catch(function () {});
-
-      //
-      function createNode(element) {
-        return document.createElement(element);
-      }
-
-      function append(parent, el) {
-        return parent.appendChild(el);
-      }
-
-      const ul = document.getElementById("authors");
-      const url = "https://randomuser.me/api/?results=10";
-
-      fetch(url)
-        .then((resp) => resp.json())
-        .then(function (data) {
-          let authors = data.results;
-          return authors.map(function (author) {
-            let li = createNode("li");
-            let img = createNode("img");
-            let span = createNode("span");
-            img.src = author.picture.medium;
-            span.innerHTML = `${author.name.first} ${author.name.last}`;
-            append(li, img);
-            append(li, span);
-            append(ul, li);
+            topPostFive.appendChild(tryDiv);
           });
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    </script> -->
+      }
+    </script>
   </body>
 </html>
+
+// ----------------------------------------------------------------------
