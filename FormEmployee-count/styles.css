@@ -1,0 +1,23 @@
+div,div{
+    text-align: center;
+}
+input {
+    height: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+  /* form input{
+      margin: left 10px;
+  } */
+#inputElements{
+    margin-top: 20px;
+    padding-top: 20px;
+    
+}
+#submit {
+    margin-left: 133px;
+    background-color: black;
+    color: white;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+}
